@@ -1,0 +1,338 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.7f1 (24e8595d6d43) revision 2418777'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19043) 64bit Professional' Language: 'ru' Physical Memory: 16332 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Unity Versions\2021.3.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/punch-club/PunchClub
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+50297
+Successfully changed project path to: D:/punch-club/PunchClub
+D:/punch-club/PunchClub
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 100.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.7f1 (24e8595d6d43)
+[Subsystems] Discovering subsystems at path D:/Unity Versions/2021.3.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/punch-club/PunchClub/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
+    Vendor:   NVIDIA
+    VRAM:     6052 MB
+    Driver:   30.0.15.1215
+Initialize mono
+Mono path[0] = 'D:/Unity Versions/2021.3.7f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity Versions/2021.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity Versions/2021.3.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56484
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity Versions/2021.3.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: D:/Unity Versions/2021.3.7f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: D:/Unity Versions/2021.3.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: D:/Unity Versions/2021.3.7f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Register platform support module: D:/Unity Versions/2021.3.7f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Registered in 0.005285 seconds.
+Native extension for UWP target not found
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 95.84 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.775 seconds
+Domain Reload Profiling:
+	ReloadAssembly (776ms)
+		BeginReloadAssembly (89ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (556ms)
+			LoadAssemblies (89ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (126ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (32ms)
+			SetupLoadedEditorAssemblies (342ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (71ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (96ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (120ms)
+				ProcessInitializeOnLoadMethodAttributes (54ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005272 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\punch-club\PunchClub\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\punch-club\PunchClub\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for UWP target not found
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.309 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1310ms)
+		BeginReloadAssembly (236ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (136ms)
+		EndReloadAssembly (937ms)
+			LoadAssemblies (88ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (311ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (63ms)
+			SetupLoadedEditorAssemblies (424ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (19ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (96ms)
+				ProcessInitializeOnLoadAttributes (271ms)
+				ProcessInitializeOnLoadMethodAttributes (34ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3400 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 27 unused Assets / (111.1 KB). Loaded Objects now: 3860.
+Memory consumption went from 119.5 MB to 119.4 MB.
+Total: 3.703700 ms (FindLiveObjects: 0.306500 ms CreateObjectMapping: 0.091000 ms MarkObjects: 3.124800 ms  DeleteObjects: 0.180200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: e54d7ab0439102e2317fc1e4b246158d -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 6300.118674 seconds.
+  path: Assets/Royal Punch Assets/Shaders/NewToon.shader
+  artifactKey: Guid(6e909976ce8b04ef2b2789befbd1fd15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Shaders/NewToon.shader using Guid(6e909976ce8b04ef2b2789befbd1fd15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6e3de8ca6f2f99dbd14e28aeb6958d7') in 0.042732 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.631878 seconds.
+  path: Assets/Royal Punch Assets/Models & Animations
+  artifactKey: Guid(3262019b2e9b2bc4585e2e3a6c61785b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Models & Animations using Guid(3262019b2e9b2bc4585e2e3a6c61785b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '364f0d7fc9052aea9cb1762be5e37da6') in 0.005953 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.084299 seconds.
+  path: Assets/Royal Punch Assets/Models & Animations/AdditionalBoxer.fbx
+  artifactKey: Guid(05da530a745754c6f92938aa24d5d3a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Models & Animations/AdditionalBoxer.fbx using Guid(05da530a745754c6f92938aa24d5d3a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a2ccc27c2a959a6cf0ff27deaadd0f3') in 0.357758 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 82.222144 seconds.
+  path: Assets/Royal Punch Assets/Sprites
+  artifactKey: Guid(486a4187e36bad2439e771aec2a63bd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites using Guid(486a4187e36bad2439e771aec2a63bd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0cc9b8b34e91d900cfed8fa05eff999') in 0.007084 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.029298 seconds.
+  path: Assets/Royal Punch Assets/Sprites/Arrow.png
+  artifactKey: Guid(ca0a3a6126a64934cbfb2af3d54ab187) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/Arrow.png using Guid(ca0a3a6126a64934cbfb2af3d54ab187) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d7aa220c35bd4b945cb6d564903b4d2') in 0.070367 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Royal Punch Assets/Sprites/TexFloor2.png
+  artifactKey: Guid(c8158a87ac1016841bced83faa4eb275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/TexFloor2.png using Guid(c8158a87ac1016841bced83faa4eb275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ff648c1ab323b73eee0ac84499a2893') in 0.034423 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.923278 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI
+  artifactKey: Guid(a3356b39bbb2997448eae7ccff5ee776) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI using Guid(a3356b39bbb2997448eae7ccff5ee776) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b27151b9c033abfeedd46950bd045ef') in 0.006231 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.047149 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Circle.png
+  artifactKey: Guid(b6de2bbd544db4ccda3a5ca7411ade6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Circle.png using Guid(b6de2bbd544db4ccda3a5ca7411ade6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed07690cdf6bf9e78f476260ad7ea103') in 0.036667 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Rectangle_green_outline_shadow.png
+  artifactKey: Guid(0885f668c2f6a4496882a0c9eadedf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Rectangle_green_outline_shadow.png using Guid(0885f668c2f6a4496882a0c9eadedf3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7967046e6899cf5ec4e89293dfe1b7af') in 0.169373 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_green.png
+  artifactKey: Guid(a0b1eb117f8ed4cf383501f24ccdb08c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_green.png using Guid(a0b1eb117f8ed4cf383501f24ccdb08c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04b6aa190a6f58f1918d9d6e770ff9ab') in 0.329546 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_purple.png
+  artifactKey: Guid(7666ff0850c104a6897f0c8daf7d2c93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_purple.png using Guid(7666ff0850c104a6897f0c8daf7d2c93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '668d62c71fa52aeffb2f770830ff3ad8') in 0.272271 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Joystick_outter.png
+  artifactKey: Guid(4f442a8e267333c4ba875843818bdea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Joystick_outter.png using Guid(4f442a8e267333c4ba875843818bdea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4053c8bc36cb8c2781fa896febe0f1c0') in 0.076147 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_purple_outline_shadow.png
+  artifactKey: Guid(75679f145eaf1490a8b534bd8a8ba421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_purple_outline_shadow.png using Guid(75679f145eaf1490a8b534bd8a8ba421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33778abb750462e51db5f2f4f685bc2c') in 0.265394 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_yellow_outline.png
+  artifactKey: Guid(db1f08bb09e57431294e1692e7ce2ec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_yellow_outline.png using Guid(db1f08bb09e57431294e1692e7ce2ec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e25e3f37890f4ab08eeb60eb4145e41f') in 0.212604 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_yellow_outline_shadow.png
+  artifactKey: Guid(f4bc936a06a8b4c7d8562284bb127a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_yellow_outline_shadow.png using Guid(f4bc936a06a8b4c7d8562284bb127a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cf79291ccd5293ed200d8671d7ff222') in 0.227139 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_purple_shadow.png
+  artifactKey: Guid(5367c8d92b9fc4554a9773b0b6faa178) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_purple_shadow.png using Guid(5367c8d92b9fc4554a9773b0b6faa178) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bccb3883bf85ff0a6b94d77cd808ee2d') in 0.206037 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Restart.png
+  artifactKey: Guid(bf2174590125f4401b3fe9bd9b1a3125) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Restart.png using Guid(bf2174590125f4401b3fe9bd9b1a3125) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f1216c142a1e55c04d1d325832fe759') in 0.256770 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Joystick_inner.png
+  artifactKey: Guid(eb3831b3b436eff48bd8a0c6ccc56d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Joystick_inner.png using Guid(eb3831b3b436eff48bd8a0c6ccc56d53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d167453f201c2943d867d378fa3b11f') in 0.064705 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_yellow.png
+  artifactKey: Guid(8c61faa4cd1fa4e12ba287a592098435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_yellow.png using Guid(8c61faa4cd1fa4e12ba287a592098435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6c55b8245d61f84d9ae2dd05d7a6a4e') in 0.215847 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Title_blue.png
+  artifactKey: Guid(7128835277f78c74aaf23802c9b8739d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Title_blue.png using Guid(7128835277f78c74aaf23802c9b8739d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e02369213d2cc63e272f491392c5c343') in 0.041989 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Round_green_2.png
+  artifactKey: Guid(3fd9b70dc8739450badbf671a508e75a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Round_green_2.png using Guid(3fd9b70dc8739450badbf671a508e75a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1570db2295639f9f9ee6a9ac64a4c57d') in 0.233637 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_green_outline.png
+  artifactKey: Guid(b2eef44bef39646b8ba932b0bcd89dbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_green_outline.png using Guid(b2eef44bef39646b8ba932b0bcd89dbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dae2c2278d0571702976b61d12393a9') in 0.202410 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Pause.png
+  artifactKey: Guid(f1ced9228313a49488ae03ebe2d34256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Pause.png using Guid(f1ced9228313a49488ae03ebe2d34256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca3148812ee606cb0477ec63edf54e15') in 0.192483 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Reward_BG.png
+  artifactKey: Guid(92cb6160bc78e45fe9db1aa676232c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Reward_BG.png using Guid(92cb6160bc78e45fe9db1aa676232c44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '801ebcd7eb84e665a6af58a9642bc384') in 0.098491 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Home.png
+  artifactKey: Guid(94c66d52dd64140409b30fe9647fac86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Home.png using Guid(94c66d52dd64140409b30fe9647fac86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dffc1d8d6a5843453b98c5593912e62') in 0.169475 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Royal Punch Assets/Sprites/UI/Square_blue.png
+  artifactKey: Guid(60100aaec27cc4398b9e3d94a648d75d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/UI/Square_blue.png using Guid(60100aaec27cc4398b9e3d94a648d75d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9af8d93047aca61c4fe91dedf401e02') in 0.273099 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.391889 seconds.
+  path: Assets/Royal Punch Assets/Sprites/Punch/FlashNew1.png
+  artifactKey: Guid(7fe010986a213884eac9e41bd8d900b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Royal Punch Assets/Sprites/Punch/FlashNew1.png using Guid(7fe010986a213884eac9e41bd8d900b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9129130fffb53f6eb743ef99450092ae') in 0.020358 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
