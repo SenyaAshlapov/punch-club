@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField]private CharacterController _playerChareacterController;
-    [SerializeField]private Transform _playerTransform;
-    [SerializeField]private Rigidbody _playerRigidBody;
-    [SerializeField]private float _speed;
+
 
     private Transform mainCamera;
 
     private Enemy _enemy;
     private PlayerInput _playerInput;
+
+    #region States
+    private IState _currentState;
+
+    private PlayerIdleState _idleState;
+    private PlayerFightState _fightState;
+    private PlayerNockdownState _nockdownState;
+    #endregion
+
+    #region Movement
+    [SerializeField]private Transform _playerTransform;
+    [SerializeField]private Transform _playerModelTransform;
+    [SerializeField]private float _speed;
+
+    public PlayerMovement PlayerMovement;
+    #endregion
+
+    [SerializeField]private Animator _playerAnimator;
 
     void OnEnable()
     {
@@ -27,35 +42,33 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         PlayerSingleton.SingltonePlayer.SetPlayer(this);
+
         _playerInput = new PlayerInput();
     }
+
     void Start()
     {      
-        
         _enemy = EnemySingletone.SingltoneEnemy.GetEnemy();
+
+        PlayerMovement = new PlayerMovement(_playerAnimator, _playerInput, _speed, _playerTransform, _playerModelTransform, _enemy.transform);
+
+        _idleState = new PlayerIdleState(this);
+        _fightState = new PlayerFightState(this);
+        _nockdownState = new PlayerNockdownState(this);
+
+        _currentState = _idleState;
     }
 
-    private void Update() {
-        transform.LookAt(_enemy.transform, Vector3.up);
-        movment();
+    private void Update() 
+    {
+        _currentState.Loop();
     }
 
-    private void movment()
-    { 
-        mainCamera = Camera.main.transform;
-
-        Vector2 sticDirection = _playerInput.Player.Move.ReadValue<Vector2>();
-        float distance = Vector3.Distance(_enemy.transform.position, _playerTransform.position);
-
-        Vector3 forwardVector = mainCamera.forward;
-        Vector3 rightVector = mainCamera.right;
-
-        forwardVector.y = 0;
-        rightVector.y = 0;
-
-        Vector3 moveDirection = sticDirection.x * rightVector.normalized + sticDirection.y * forwardVector.normalized;
-
-        //_playerRigidBody.velocity = moveDirection * _speed;
-        _playerTransform.position += moveDirection * _speed * Time.deltaTime;
+    private void changeState(IState newState)
+    {
+        _currentState.Exit();
+        newState.Enter();
+        _currentState = newState;
     }
+
 }
