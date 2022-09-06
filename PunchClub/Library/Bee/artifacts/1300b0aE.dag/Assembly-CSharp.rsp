@@ -359,6 +359,8 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Enemy/Enemy.cs"
 "Assets/Scripts/Enemy/EnemySingletone.cs"
+"Assets/Scripts/GamePlay/CameraLooker.cs"
+"Assets/Scripts/GamePlay/LevelSaves.cs"
 "Assets/Scripts/Interfaces/IState.cs"
 "Assets/Scripts/Player/Player.cs"
 "Assets/Scripts/Player/PlayerAnimation.cs"

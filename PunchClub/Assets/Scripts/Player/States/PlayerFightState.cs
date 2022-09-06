@@ -13,7 +13,7 @@ public class PlayerFightState : IState
     
     public void Enter()
     {
-
+        _player.PlayerFighting.StartFight();
     }
     public void Loop()
     {
@@ -21,6 +21,6 @@ public class PlayerFightState : IState
     }
     public void Exit()
     {
-
+        _player.PlayerFighting.StopFight();
     }
 }

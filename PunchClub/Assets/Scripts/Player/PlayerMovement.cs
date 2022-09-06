@@ -2,27 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement
+public class PlayerMovement : MonoBehaviour
 {
     private Transform mainCamera;
     private PlayerInput _playerInput;
     private float _speed;
     private Transform _playerTransform;
-    private Transform _playerModelTransform;
     private Transform _enemyTransform;
     private Animator _playerAnimator;
     private PlayerAnimation _animation;
 
 
-    public PlayerMovement(Animator playerAnimator, PlayerInput playerInput, float speed, Transform playerTransform, Transform playerModelTransform, Transform enemyTransform)
+    public void InitPlayerMovement(Animator playerAnimator, PlayerInput playerInput, float speed, Transform playerTransform, Transform enemyTransform)
     {
-        _animation = new PlayerAnimation();
+        _animation = new PlayerAnimation(playerAnimator);
 
         _playerAnimator = playerAnimator;
         _playerInput = playerInput;
         _speed = speed;
         _playerTransform = playerTransform;
-        _playerModelTransform = playerModelTransform;
         _enemyTransform = enemyTransform;
 
     }
@@ -44,6 +42,6 @@ public class PlayerMovement
 
         _playerTransform.LookAt(_enemyTransform.transform, Vector3.up);
 
-        _animation.AnimateMovement(sticDirection, _playerAnimator);
+        _animation.AnimateMovement(sticDirection);
     }
 }
