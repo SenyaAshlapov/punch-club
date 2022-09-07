@@ -23,4 +23,5 @@ public class PlayerAnimation
     {
         _currentAnimator.SetLayerWeight(_fightLayerIndex, layerWeight);
     }
+    
 }

@@ -95,6 +95,11 @@ public class Player : MonoBehaviour
         }   
     }
 
+    public void GetDamage(float damage)
+    {
+        _health -= damage;
+    }
+
     private void changeState(IState newState)
     {
         _currentState.Exit();
