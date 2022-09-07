@@ -15,12 +15,14 @@ public class Enemy : MonoBehaviour
     [SerializeField]private Animator _enemyAnimator;
 
     public EnemyFighting EnemyFighting;
+    public EnemySuperPunch EnemySuperPunch;
 
     #region States
     private IState _currentState;
 
     private EnemyIdleState _idleState;
     private EnemyFightState _fightState;
+    private EnemySuperPunchState _superPunchState;
     #endregion
 
     private void Awake() 
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         _idleState = new EnemyIdleState(_player, this, _enemyAnimator);
         _fightState = new EnemyFightState(_player, this, _enemyAnimator);
+        _superPunchState = new EnemySuperPunchState(_player, this, _enemyAnimator);
 
         _currentState = _idleState;
     }
@@ -41,10 +44,16 @@ public class Enemy : MonoBehaviour
     {
         _currentState.Loop();
 
-        if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
+         if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
         {
             changeState(_fightState);
-        }
+        } 
+
+/*         if(checkDistanceToPlayer() <= _distance && _currentState != _superPunchState)
+        {
+            changeState(_superPunchState);
+        }  */
+
         if(checkDistanceToPlayer() > _distance && _currentState != _idleState)
         {
             changeState(_idleState);

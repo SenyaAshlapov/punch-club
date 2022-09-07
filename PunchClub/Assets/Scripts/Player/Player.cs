@@ -52,6 +52,13 @@ public class Player : MonoBehaviour
         PlayerSingleton.SingltonePlayer.SetPlayer(this);
 
         _playerInput = new PlayerInput();
+
+        EnemySuperPunch.SuperPunchHit += superPunchHit;
+    }
+
+    private void OnDestroy() 
+    {
+        EnemySuperPunch.SuperPunchHit -= superPunchHit;
     }
 
     void Start()
@@ -119,6 +126,12 @@ public class Player : MonoBehaviour
 
         _health = data.PlayerHealth;
         _damage = data.PlayerDamage;
+    }
+
+    private void superPunchHit(float damage)
+    {
+        GetDamage(damage);
+        //карутина с регдолом
     }
 
 }
