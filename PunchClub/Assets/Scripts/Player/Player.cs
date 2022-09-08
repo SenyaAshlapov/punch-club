@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     #region States
     private IState _currentState;
 
+    private PlayerWaitState _waitState;
     private PlayerIdleState _idleState;
     private PlayerFightState _fightState;
     private PlayerNockdownState _nockdownState;
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
     #endregion
 
     [SerializeField]private Animator _playerAnimator;
-    [SerializeField]private HealthBar _hpBar;
+    [SerializeField]private HealthBar  _hpBar;
 
     void OnEnable()
     {
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
 
         EnemySuperPunch.SuperPunchHit += superPunchHit;
         Enemy.EnemyDead += Win;
+        UIController.StartGame += StartGame;
     }
 
     private void OnDestroy() 
@@ -76,8 +78,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {   
-
-        loadPlayerData();
 
         _enemy = EnemySingletone.SingltoneEnemy.GetEnemy();
 
@@ -99,9 +99,11 @@ public class Player : MonoBehaviour
         _fightState = new PlayerFightState(this);
         _nockdownState = new PlayerNockdownState(this, _playerAnimator);
         _winState = new PlayerWinState(_playerAnimator);
+        _waitState = new PlayerWaitState(_playerAnimator);
 
-        _currentState = _idleState;
-        _hpBar.InitHpUI(_health);
+        _currentState = _waitState;
+
+        
     }
 
     private void Update() 
@@ -126,14 +128,14 @@ public class Player : MonoBehaviour
     public void GetDamage(float damage)
     {
         _health -= damage;
-        if(_health <= 0 && _isDead == false)
+        if(_health < 0 && _isDead == false)
         {
             _health = 0;
             _isDead = true;
             Dead();
-            PlayerDead?.Invoke();
-            _hpBar.UpdateHpUI(_health);
+            PlayerDead?.Invoke();        
         }
+        _hpBar.UpdateHpUI(_health);
     }
 
     private void changeState(IState newState)
@@ -161,6 +163,13 @@ public class Player : MonoBehaviour
     {
         GetDamage(damage);
         //карутина с регдолом
+    }
+
+    private void StartGame()
+    {
+        changeState(_idleState);
+        loadPlayerData();
+        _hpBar.InitHpUI(_health);
     }
 
     private void Win()  

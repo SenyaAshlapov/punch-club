@@ -7,11 +7,14 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyEvent();
     public static EnemyEvent EnemyDead;
 
+    [SerializeField]private LevelSaves _levelSaves;
+
     private Player _player;
     [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
     [SerializeField]private BoxCollider _enemyCollider;
 
     [SerializeField]private float _health;
+    [SerializeField]private float _damage;
     [SerializeField]private float _distance;
     [SerializeField]private float _thrust;
 
@@ -61,17 +64,19 @@ public class Enemy : MonoBehaviour
 
     private void Start() 
     {
-        
+        loadLevel();
+
         _player = PlayerSingleton.SingltonePlayer.GetPlayer();
 
         _idleState = new EnemyIdleState(_player, this, _enemyAnimator);
-        _fightState = new EnemyFightState(_player, this, _enemyAnimator);
-        _superPunchState = new EnemySuperPunchState(_player, this, _enemyAnimator);
+        _fightState = new EnemyFightState(_player, this, _enemyAnimator, _damage);
+        _superPunchState = new EnemySuperPunchState(this, _enemyAnimator, _damage);
         _restState = new EnemyRestState(_enemyAnimator);
 
         _currentState = _idleState;
 
         StartCoroutine(superPunchTimer());
+
         _hpBar.InitHpUI(_health);
     }
 
@@ -94,7 +99,7 @@ public class Enemy : MonoBehaviour
             
             if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
             {
-            changeState(_fightState);
+                changeState(_fightState);
             } 
         }
     }
@@ -108,9 +113,9 @@ public class Enemy : MonoBehaviour
         {
             EnemyDead?.Invoke();
             _health = 0;
-            enemyDead();  
-            _hpBar.UpdateHpUI(_health);         
+            enemyDead();          
         }
+        _hpBar.UpdateHpUI(_health); 
     }
         
     private void changeState(IState newState)
@@ -183,6 +188,14 @@ public class Enemy : MonoBehaviour
         changeState(_idleState);
         _isFreaze = true;
     } 
+
+    private void loadLevel()
+    {
+        PlayerData data = _levelSaves.LoadPlayerData();
+
+        _health = data.Level * 24;
+        _damage = data.Level * 2.5f;
+    }
 
 
 }

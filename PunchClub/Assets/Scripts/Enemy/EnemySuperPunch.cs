@@ -26,15 +26,17 @@ public class EnemySuperPunch : MonoBehaviour
 
     [SerializeField]private float _zoneSpeed;
     [SerializeField]private float _pauseAnimtion;
-    [SerializeField]private float _damage;
+    private float _damage;
+    [SerializeField]private float _damageFactor;
 
     private void Start() 
     {
         _player = PlayerSingleton.SingltonePlayer.GetPlayer();        
     }
 
-    public void SuperPunch(Animator animator)
+    public void SuperPunch(Animator animator, float damage)
     {
+        _damage =  _damageFactor * damage;
         int randomPunch = Random.Range(0, _enemySuperPunchesAnimations.Count);
         animator.Play(_enemySuperPunchesAnimations[randomPunch], 0, 0);
     }

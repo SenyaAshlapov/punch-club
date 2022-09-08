@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyFighting : MonoBehaviour
 {
-    [SerializeField]private float _damage;
+    private float _damage;
     [SerializeField]private float _timeBetweenPunches;
     
-    public void StartFight(Player player)
+    public void StartFight(Player player, float damage)
     {
+        _damage = damage;
         StartCoroutine(fight(player));
     }
 

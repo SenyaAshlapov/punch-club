@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemySuperPunchState : IState
 {
-    private Player _player;
-    private Enemy _enemy;
     private Animator _animator;
+    private float _damage;
+    private Enemy _enemy;
 
-    public EnemySuperPunchState(Player player, Enemy enemy, Animator animator)
+    public EnemySuperPunchState(Enemy enemy, Animator animator, float damage)
     {
-        _player = player;
         _enemy = enemy;
+        _damage = damage;
         _animator = animator;
     }
 
     public void Enter()
     {
-        _enemy.EnemySuperPunch.SuperPunch(_animator);
+        _enemy.EnemySuperPunch.SuperPunch(_animator, _damage);
     }
 
     public void Loop()
@@ -28,6 +28,5 @@ public class EnemySuperPunchState : IState
     public void Exit()
     {
     }
-
 
 }

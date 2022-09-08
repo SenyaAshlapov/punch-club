@@ -13,6 +13,16 @@ public class LevelSaves : MonoBehaviour
     [SerializeField]private int _defaultDamage;
     [SerializeField]private int _defaultHealth;
     
+    private void Awake() 
+    {
+        Enemy.EnemyDead += levelUp;
+    }
+
+    private void OnDestroy() 
+    {
+        Enemy.EnemyDead -= levelUp;
+    }
+    
     public PlayerData LoadPlayerData()
     {
         _savePlayerDataPath = Path.Combine(Application.dataPath, _savePlayerDataFile);
@@ -46,6 +56,17 @@ public class LevelSaves : MonoBehaviour
         {
             Debug.Log(exception);
         }
+    }
+
+    private void levelUp()
+    {
+        PlayerData data = LoadPlayerData();
+
+        data.Level += 1;
+        data.Money += data.Level * 147;
+
+        SavePlayerData(data);
+
     }
 }
 
