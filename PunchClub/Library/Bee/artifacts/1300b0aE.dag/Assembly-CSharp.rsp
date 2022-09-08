@@ -357,7 +357,6 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/Destroyer.cs"
 "Assets/Scripts/Enemy/Enemy.cs"
 "Assets/Scripts/Enemy/EnemyFighting.cs"
 "Assets/Scripts/Enemy/EnemySingletone.cs"
@@ -370,6 +369,7 @@
 "Assets/Scripts/Events.cs"
 "Assets/Scripts/GamePlay/CameraLooker.cs"
 "Assets/Scripts/GamePlay/CamerasChanger.cs"
+"Assets/Scripts/GamePlay/Destroyer.cs"
 "Assets/Scripts/GamePlay/LevelSaves.cs"
 "Assets/Scripts/Interfaces/IState.cs"
 "Assets/Scripts/Player/Player.cs"
@@ -382,6 +382,8 @@
 "Assets/Scripts/Player/States/PlayerIdleState.cs"
 "Assets/Scripts/Player/States/PlayerNockdownState.cs"
 "Assets/Scripts/Player/States/PlayerWinState.cs"
+"Assets/Scripts/UI/HealthBar.cs"
+"Assets/Scripts/UI/UIController.cs"
 -langversion:9.0
 
 /deterministic

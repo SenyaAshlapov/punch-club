@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     #endregion
 
     [SerializeField]private Animator _playerAnimator;
+    [SerializeField]private HealthBar _hpBar;
 
     void OnEnable()
     {
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour
     private void OnDestroy() 
     {
         EnemySuperPunch.SuperPunchHit -= superPunchHit;
+        Enemy.EnemyDead -= Win;
     }
 
     void Start()
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
         _winState = new PlayerWinState(_playerAnimator);
 
         _currentState = _idleState;
+        _hpBar.InitHpUI(_health);
     }
 
     private void Update() 
@@ -129,6 +132,7 @@ public class Player : MonoBehaviour
             _isDead = true;
             Dead();
             PlayerDead?.Invoke();
+            _hpBar.UpdateHpUI(_health);
         }
     }
 

@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
     private bool _isDead = false;
     private bool _isFreaze = false;
 
+    [SerializeField]private HealthBar _hpBar;
+
     private void Awake() 
     {
         EnemySingletone.SingltoneEnemy.SetEnemy(this);
@@ -70,6 +72,7 @@ public class Enemy : MonoBehaviour
         _currentState = _idleState;
 
         StartCoroutine(superPunchTimer());
+        _hpBar.InitHpUI(_health);
     }
 
     private void Update() 
@@ -98,12 +101,15 @@ public class Enemy : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        _health -= damage;
-        if(_health <= 0 && _isDead == false)
+        if(_isFreaze == false && _isDead == false )
+            _health -= damage;
+
+        if(_health <= 0 && _isDead == false )
         {
             EnemyDead?.Invoke();
             _health = 0;
-            enemyDead();           
+            enemyDead();  
+            _hpBar.UpdateHpUI(_health);         
         }
     }
         

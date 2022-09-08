@@ -5,6 +5,11 @@ using Cinemachine;
 
 public class CamerasChanger : MonoBehaviour
 {
+    public delegate void CameraEvent();
+    public static CameraEvent ChangeCameraToGamePlay;
+    public static CameraEvent ChangingCameraToGamePlay;
+
+
     [SerializeField]private float _playCameraSpeed;
     [SerializeField]private float _marketCameraSpeed;
 
@@ -15,19 +20,17 @@ public class CamerasChanger : MonoBehaviour
     private CinemachineTrackedDolly _trackedDolly;
 
 
-    void Start()
-    {
-        changeCameraToGamePlay();
-    }
 
     private void Awake() 
     {
         Enemy.EnemyDead += changeCameraToVanFace;
+        UIController.StartGame += changeCameraToGamePlay;
     }
 
     private void OnDestroy() 
     {
         Enemy.EnemyDead -= changeCameraToVanFace;
+        UIController.StartGame -= changeCameraToGamePlay;
     }
 
     private void changeCameraToGamePlay() => StartCoroutine("cameraToGamePlay");
@@ -35,6 +38,7 @@ public class CamerasChanger : MonoBehaviour
 
     private IEnumerator cameraToGamePlay()
     {
+        ChangingCameraToGamePlay?.Invoke();
         float progress = 0;
         _trackedDolly = _trackedDollyCamera.GetCinemachineComponent<CinemachineTrackedDolly> ();
 
@@ -46,6 +50,8 @@ public class CamerasChanger : MonoBehaviour
         }
         _marketCamera.SetActive(false);
         _gamePlayCamera.SetActive(true);
+
+        ChangeCameraToGamePlay?.Invoke();
 
         yield return null;
 
