@@ -26,11 +26,13 @@ public class EnemyFightState : IState
     public void Loop()
     {
         Debug.Log("fight");
-        _enemy.transform.LookAt(_player.transform, Vector3.up);
+        //_enemy.transform.LookAt(_player.transform, Vector3.up);
+        _enemy.lookAtPlayer();
     }
 
     public void Exit()
     {
         _enemy.EnemyFighting.StopFight();
+        Debug.Log("stop Fight");
     }
 }

@@ -22,7 +22,8 @@ public class EnemyIdleState : IState
 
     public void Loop()
     {
-        _enemy.transform.LookAt(_player.transform, Vector3.up);
+        //_enemy.transform.LookAt(_player.transform, Vector3.up);
+        _enemy.lookAtPlayer();
     }
     public void Exit()
     {

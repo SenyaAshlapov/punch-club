@@ -1,6 +1,6 @@
 {
-    "Level": 2,
-    "PlayerHealth": 110,
-    "PlayerDamage": 20,
-    "Money": 94
+    "Level": 4,
+    "PlayerHealth": 160,
+    "PlayerDamage": 60,
+    "Money": 223
 }

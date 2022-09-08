@@ -7,27 +7,39 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyEvent();
     public static EnemyEvent EnemyDead;
 
-    [SerializeField]private LevelSaves _levelSaves;
+    #region Movement
+    [Space(10)]
+    [Header("Movement")]
 
-    private Player _player;
-    [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
+    [SerializeField]private Player _player;
+    [SerializeField]private Animator _enemyAnimator;
+    [SerializeField]private Transform _rayPoint;
+    [SerializeField]private float _rotationSpeed;
+    #endregion
+
+    #region Fighting
+    [Space(10)]
+    [Header("Fighting")]
+
     [SerializeField]private BoxCollider _enemyCollider;
-
+    
+    public EnemyFighting EnemyFighting;
+    public EnemySuperPunch EnemySuperPunch;
+    
     [SerializeField]private float _health;
     [SerializeField]private float _damage;
     [SerializeField]private float _distance;
-    [SerializeField]private float _thrust;
-
-    [Space(10)]
-    [SerializeField]private float _timeBetweenPunches;
     [SerializeField]private float _timeBetweenSuperPunches;
     [SerializeField]private float _restTime;
-    
-    [Space(5)]
-    [SerializeField]private Animator _enemyAnimator;
+    #endregion
 
-    public EnemyFighting EnemyFighting;
-    public EnemySuperPunch EnemySuperPunch;
+    #region Ragdoll
+    [Space(10)]
+    [Header("Ragdoll")]
+
+    [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
+    [SerializeField]private float _thrust;
+    #endregion
 
     #region States
     private IState _currentState;
@@ -36,7 +48,6 @@ public class Enemy : MonoBehaviour
     private EnemyFightState _fightState;
     private EnemySuperPunchState _superPunchState;
     private EnemyRestState _restState;
-
     #endregion
 
     private bool _isRest = false;
@@ -44,7 +55,11 @@ public class Enemy : MonoBehaviour
     private bool _isDead = false;
     private bool _isFreaze = false;
 
+    [Space(10)]
+    [Header("UI")]
     [SerializeField]private HealthBar _hpBar;
+    [Space(5)]
+    [SerializeField]private LevelSaves _levelSaves;
 
     private void Awake() 
     {
@@ -66,7 +81,6 @@ public class Enemy : MonoBehaviour
     {
         loadLevel();
 
-        _player = PlayerSingleton.SingltonePlayer.GetPlayer();
 
         _idleState = new EnemyIdleState(_player, this, _enemyAnimator);
         _fightState = new EnemyFightState(_player, this, _enemyAnimator, _damage);
@@ -82,12 +96,12 @@ public class Enemy : MonoBehaviour
 
     private void Update() 
     {
+        bool isHitPlayer = checkHitPlayer();
         if(_isDead == false && _isFreaze == false)
         {
             _currentState.Loop();
         }
             
-    
 
         if(_isRest == false && _isSuperPunch == false && _isDead == false )
         {
@@ -97,7 +111,7 @@ public class Enemy : MonoBehaviour
                 changeState(_idleState);
             }
             
-            if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
+            if(checkDistanceToPlayer() <= _distance && _currentState != _fightState && isHitPlayer == true)
             {
                 changeState(_fightState);
             } 
@@ -195,6 +209,39 @@ public class Enemy : MonoBehaviour
 
         _health = data.Level * 24;
         _damage = data.Level * 2.5f;
+    }
+
+    public void lookAtPlayer()
+    {
+        Vector3 direction = _player.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * _rotationSpeed);
+    }
+
+    private bool checkHitPlayer()
+    {
+
+        Ray ray = new Ray(_rayPoint.position, _rayPoint.forward);
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray, out hit))
+        {
+            if(hit.collider.gameObject.GetComponent<Player>())
+            {
+                return true;
+            }
+            
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
 

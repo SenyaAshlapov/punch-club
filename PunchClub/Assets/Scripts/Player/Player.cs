@@ -7,15 +7,45 @@ public class Player : MonoBehaviour
     public delegate void PlayerEvent();
     public static PlayerEvent PlayerDead;
 
+
+
+    #region Movement
+    [Space(10)]
+    [Header("Movment")]
+    [SerializeField]private Transform _playerTransform;
+    [SerializeField]private Animator _playerAnimator;
+    public PlayerMovement PlayerMovement;
+
+    [SerializeField]private float _speed;
+
+    private Transform mainCamera;
+    private PlayerInput _playerInput;
+
+    #endregion
+
+    #region Fighting
+    [Space(10)]
+    [Header("Fighting")]
+    [SerializeField]private Enemy _enemy;
+    [SerializeField]private float _distance;
+    [SerializeField]private float _health;
+    [SerializeField]private float _damage;
+    [SerializeField]private float _timeBetweenPunches;
+
+    public PlayerFighting PlayerFighting;
+    private bool _isDead = false;
+    private bool _isWin = false;
+    #endregion
+
+    #region Ragdoll
+    [Space(10)]
+    [Header("Ragdoll")]
     [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
     [SerializeField]private BoxCollider _playerCollider;
+
+    [SerializeField]private float _nockdownTime;
     [SerializeField]private float _thrust;
-
-    [SerializeField]private LevelSaves _levelSaves;
-    private Transform mainCamera;
-
-    private Enemy _enemy;
-    private PlayerInput _playerInput;
+    #endregion
 
     #region States
     private IState _currentState;
@@ -27,26 +57,10 @@ public class Player : MonoBehaviour
     private PlayerWinState _winState;
     #endregion
 
-    #region Movement
-    [SerializeField]private Transform _playerTransform;
-    [SerializeField]private float _speed;
-
-    public PlayerMovement PlayerMovement;
-    #endregion
-
-    #region Fighting
-    [SerializeField]private float _distance;
-    [SerializeField]private float _health;
-    [SerializeField]private float _damage;
-    [SerializeField]private float _timeBetweenPunches;
-
-    public PlayerFighting PlayerFighting;
-    private bool _isDead = false;
-    private bool _isWin = false;
-    #endregion
-
-    [SerializeField]private Animator _playerAnimator;
+    [Header("UI")]
     [SerializeField]private HealthBar  _hpBar;
+    [Space(5)]
+    [SerializeField]private LevelSaves _levelSaves;
 
     void OnEnable()
     {
@@ -78,8 +92,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {   
-
-        _enemy = EnemySingletone.SingltoneEnemy.GetEnemy();
 
         PlayerMovement.InitPlayerMovement(
             _playerAnimator, 
@@ -121,8 +133,6 @@ public class Player : MonoBehaviour
                 changeState(_idleState);
             }  
         }
-
- 
     }
 
     public void GetDamage(float damage)
@@ -162,7 +172,7 @@ public class Player : MonoBehaviour
     private void superPunchHit(float damage)
     {
         GetDamage(damage);
-        //карутина с регдолом
+        StartCoroutine("nockDown");
     }
 
     private void StartGame()
@@ -198,10 +208,24 @@ public class Player : MonoBehaviour
             foreach(Rigidbody rb in _ragdollRB)
             {
                 rb.AddForce(0, _thrust, 0, ForceMode.Impulse);
-            }
-           
+            }      
+        }    
+    }
+
+    private IEnumerator nockDown()
+    {
+        ActivityRagdoll(true);
+        _playerAnimator.enabled = false;
+
+        foreach(Rigidbody rb in _ragdollRB)
+        {
+            rb.AddForce(0, _thrust, 0, ForceMode.Impulse);
         }
+
+        yield return new WaitForSeconds(_nockdownTime);
         
+        ActivityRagdoll(false);
+        _playerAnimator.enabled = true;
     }
 
 }
