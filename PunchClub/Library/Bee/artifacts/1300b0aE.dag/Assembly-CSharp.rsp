@@ -365,6 +365,7 @@
 "Assets/Scripts/Enemy/States/EnemyFightState.cs"
 "Assets/Scripts/Enemy/States/EnemyIdleState.cs"
 "Assets/Scripts/Enemy/States/EnemyNockdownState.cs"
+"Assets/Scripts/Enemy/States/EnemyRestState.cs"
 "Assets/Scripts/Enemy/States/EnemySuperPunchState.cs"
 "Assets/Scripts/Events.cs"
 "Assets/Scripts/GamePlay/CameraLooker.cs"
@@ -380,6 +381,7 @@
 "Assets/Scripts/Player/States/PlayerFightState.cs"
 "Assets/Scripts/Player/States/PlayerIdleState.cs"
 "Assets/Scripts/Player/States/PlayerNockdownState.cs"
+"Assets/Scripts/Player/States/PlayerWinState.cs"
 -langversion:9.0
 
 /deterministic

@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public delegate void EnemyEvent();
+    public static EnemyEvent EnemyDead;
+
     private Player _player;
+    [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
+    [SerializeField]private BoxCollider _enemyCollider;
 
     [SerializeField]private float _health;
-    [SerializeField]private float _damage;
-    [SerializeField]private float _timeBetweenPunches;
     [SerializeField]private float _distance;
-    private bool _isPunch = false;
+    [SerializeField]private float _thrust;
 
+    [Space(10)]
+    [SerializeField]private float _timeBetweenPunches;
+    [SerializeField]private float _timeBetweenSuperPunches;
+    [SerializeField]private float _restTime;
+    
+    [Space(5)]
     [SerializeField]private Animator _enemyAnimator;
 
     public EnemyFighting EnemyFighting;
@@ -23,47 +32,79 @@ public class Enemy : MonoBehaviour
     private EnemyIdleState _idleState;
     private EnemyFightState _fightState;
     private EnemySuperPunchState _superPunchState;
+    private EnemyRestState _restState;
+
     #endregion
+
+    private bool _isRest = false;
+    private bool _isSuperPunch = false;
+    private bool _isDead = false;
+    private bool _isFreaze = false;
 
     private void Awake() 
     {
         EnemySingletone.SingltoneEnemy.SetEnemy(this);
+        EnemySuperPunch.SuperPunchEnd += endSuperPunch;
+        Player.PlayerDead += freaze;
+
+        activityRagdoll(false);
     }
+
+
+    void OnDestroy()
+    {
+        EnemySuperPunch.SuperPunchEnd -= endSuperPunch;
+        Player.PlayerDead -= freaze;
+    }
+
     private void Start() 
     {
+        
         _player = PlayerSingleton.SingltonePlayer.GetPlayer();
 
         _idleState = new EnemyIdleState(_player, this, _enemyAnimator);
         _fightState = new EnemyFightState(_player, this, _enemyAnimator);
         _superPunchState = new EnemySuperPunchState(_player, this, _enemyAnimator);
+        _restState = new EnemyRestState(_enemyAnimator);
 
         _currentState = _idleState;
+
+        StartCoroutine(superPunchTimer());
     }
 
     private void Update() 
     {
-        _currentState.Loop();
-
-         if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
+        if(_isDead == false && _isFreaze == false)
         {
+            _currentState.Loop();
+        }
+            
+    
+
+        if(_isRest == false && _isSuperPunch == false && _isDead == false )
+        {
+
+            if(checkDistanceToPlayer() > _distance && _currentState != _idleState)
+            {
+                changeState(_idleState);
+            }
+            
+            if(checkDistanceToPlayer() <= _distance && _currentState != _fightState)
+            {
             changeState(_fightState);
-        } 
-
-/*         if(checkDistanceToPlayer() <= _distance && _currentState != _superPunchState)
-        {
-            changeState(_superPunchState);
-        }  */
-
-        if(checkDistanceToPlayer() > _distance && _currentState != _idleState)
-        {
-            changeState(_idleState);
+            } 
         }
     }
 
     public void GetDamage(float damage)
     {
         _health -= damage;
-        Debug.Log(_health);
+        if(_health <= 0 && _isDead == false)
+        {
+            EnemyDead?.Invoke();
+            _health = 0;
+            enemyDead();           
+        }
     }
         
     private void changeState(IState newState)
@@ -79,6 +120,63 @@ public class Enemy : MonoBehaviour
         float distance =  Vector3.Distance(_player.transform.position, transform.position);
         return distance;
     }
+
+    private void endSuperPunch()
+    {      
+        StartCoroutine(restAfterSuperPunch());
+    }
+    
+    private IEnumerator superPunchTimer()
+    {
+        yield return new WaitForSeconds(_timeBetweenSuperPunches);
+        _isSuperPunch = true;
+        changeState(_superPunchState);
+        yield return null;
+    }
+
+    private IEnumerator restAfterSuperPunch()
+    {
+        _isSuperPunch = false;
+        _isRest = true;
+        changeState(_restState);
+        yield return new WaitForSeconds(_restTime);
+        _isRest = false;
+
+        StartCoroutine(superPunchTimer());
+        yield return null;
+    } 
+
+    private void enemyDead()
+    {
+        _isDead = true;
+        _enemyAnimator.enabled = false;
+        activityRagdoll(true);
+    }
+
+    private void activityRagdoll(bool activity)
+    {
+
+        foreach(Rigidbody rb in _ragdollRB)
+        {
+            rb.isKinematic = !activity;
+        }
+        _enemyCollider.enabled = !activity;
+
+        if(activity == true)
+        {
+            foreach(Rigidbody rb in _ragdollRB)
+            {
+                rb.AddForce(0, _thrust, 0, ForceMode.Impulse);
+            }
+        }
+        
+    }
+
+    private void freaze() 
+    {
+        changeState(_idleState);
+        _isFreaze = true;
+    } 
 
 
 }

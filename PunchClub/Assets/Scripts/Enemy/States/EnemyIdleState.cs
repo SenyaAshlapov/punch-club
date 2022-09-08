@@ -17,7 +17,7 @@ public class EnemyIdleState : IState
 
     public void Enter()
     {
-       _animator.Play("Main.Idle", 0, 0.25f);
+       _animator.Play("Main.Idle", 0, 0.5f);
     }
 
     public void Loop()

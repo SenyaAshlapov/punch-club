@@ -17,7 +17,6 @@ public class EnemySuperPunchState : IState
 
     public void Enter()
     {
-        Debug.Log("Super punch");
         _enemy.EnemySuperPunch.SuperPunch(_animator);
     }
 
@@ -28,6 +27,7 @@ public class EnemySuperPunchState : IState
 
     public void Exit()
     {
-        
     }
+
+
 }

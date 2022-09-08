@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public delegate void PlayerEvent();
+    public static PlayerEvent PlayerDead;
+
+    [SerializeField]private List<Rigidbody> _ragdollRB = new List<Rigidbody>();
+    [SerializeField]private BoxCollider _playerCollider;
+    [SerializeField]private float _thrust;
 
     [SerializeField]private LevelSaves _levelSaves;
     private Transform mainCamera;
@@ -17,6 +23,7 @@ public class Player : MonoBehaviour
     private PlayerIdleState _idleState;
     private PlayerFightState _fightState;
     private PlayerNockdownState _nockdownState;
+    private PlayerWinState _winState;
     #endregion
 
     #region Movement
@@ -33,6 +40,8 @@ public class Player : MonoBehaviour
     [SerializeField]private float _timeBetweenPunches;
 
     public PlayerFighting PlayerFighting;
+    private bool _isDead = false;
+    private bool _isWin = false;
     #endregion
 
     [SerializeField]private Animator _playerAnimator;
@@ -49,11 +58,13 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        ActivityRagdoll(false);
         PlayerSingleton.SingltonePlayer.SetPlayer(this);
 
         _playerInput = new PlayerInput();
 
         EnemySuperPunch.SuperPunchHit += superPunchHit;
+        Enemy.EnemyDead += Win;
     }
 
     private void OnDestroy() 
@@ -63,6 +74,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {   
+
         loadPlayerData();
 
         _enemy = EnemySingletone.SingltoneEnemy.GetEnemy();
@@ -83,7 +95,8 @@ public class Player : MonoBehaviour
 
         _idleState = new PlayerIdleState(this);
         _fightState = new PlayerFightState(this);
-        _nockdownState = new PlayerNockdownState(this);
+        _nockdownState = new PlayerNockdownState(this, _playerAnimator);
+        _winState = new PlayerWinState(_playerAnimator);
 
         _currentState = _idleState;
     }
@@ -92,19 +105,31 @@ public class Player : MonoBehaviour
     {
         _currentState.Loop();
 
-        if(checkDistanceToEnemy() <= _distance && _currentState != _fightState)
+        if(_isWin == false && _isDead == false)
         {
-            changeState(_fightState);
+            if(checkDistanceToEnemy() <= _distance && _currentState != _fightState)
+            {
+                changeState(_fightState);
+            }
+            if(checkDistanceToEnemy() > _distance && _currentState != _idleState)
+            {
+                changeState(_idleState);
+            }  
         }
-        if(checkDistanceToEnemy() > _distance && _currentState != _idleState)
-        {
-            changeState(_idleState);
-        }   
+
+ 
     }
 
     public void GetDamage(float damage)
     {
         _health -= damage;
+        if(_health <= 0 && _isDead == false)
+        {
+            _health = 0;
+            _isDead = true;
+            Dead();
+            PlayerDead?.Invoke();
+        }
     }
 
     private void changeState(IState newState)
@@ -132,6 +157,38 @@ public class Player : MonoBehaviour
     {
         GetDamage(damage);
         //карутина с регдолом
+    }
+
+    private void Win()  
+    {
+        _isWin = true;
+        changeState(_winState);
+    }
+
+    private void Dead()
+    {
+        ActivityRagdoll(true);
+        _playerAnimator.enabled = false;
+    }
+
+    public void ActivityRagdoll(bool activity)
+    {
+
+        foreach(Rigidbody rb in _ragdollRB)
+        {
+            rb.isKinematic = !activity;
+        }
+        _playerCollider.enabled = !activity;
+
+        if(activity == true)
+        {
+            foreach(Rigidbody rb in _ragdollRB)
+            {
+                rb.AddForce(0, _thrust, 0, ForceMode.Impulse);
+            }
+           
+        }
+        
     }
 
 }

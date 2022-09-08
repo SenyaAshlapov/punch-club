@@ -71,6 +71,7 @@ public class EnemySuperPunch : MonoBehaviour
     public void EndSuperPunch()
     {
         SuperPunchEnd?.Invoke();
+        Debug.Log("end");
     }
 
     private IEnumerator createRedZone()
